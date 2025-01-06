@@ -51,19 +51,20 @@ X = X.drop(columns=['Leadership Opportunities', 'Innovation Opportunities'])
 
 # Define the function to map income ranges to ordinal values
 def map_monthly_income(income):
-    if 1200 <= income <= 5000:
+    if 1200 <= income <= 10000:
         return 0
-    elif 5001 <= income <= 10000:
+    elif 10001 <= income <= 20000:
         return 1
-    elif 10001 <= income <= 15000:
+    elif 20001 <= income <= 35000:
         return 2
-    elif 15001 <= income <= 20000:
+    elif 35001 <= income <= 50000:
         return 3
-    elif income >= 20001:
+    elif income >= 50001:
         return 4
     else:
         return -1  # Handle any unexpected values
 
+X['Monthly Income'] = X['Monthly Income'].apply(map_monthly_income)
 
 scaler = StandardScaler()
 
